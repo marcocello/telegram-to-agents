@@ -1,0 +1,257 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/telegram-to-agents/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/telegram-to-agents
+proof_tests=tests/features/test_telegram_to_agents_gateway.py
+providers=codex,claude
+wheel=telegram_to_agents-0.1.0-py3-none-any.whl
+sdist=telegram_to_agents-0.1.0.tar.gz
+telegram-to-agents [onboarding|reset|status|stop|restart]
+With no command, run the native-harness Telegram gateway.
+installed_wheel_import=PASS
+installed_wheel_runtime_start=PASS
+.                                                                        [100%]
+1 passed in 0.76s
+F.FF...FFF.................F....FFF....                                  [100%]
+=================================== FAILURES ===================================
+_______ test_authorized_telegram_text_is_exact_resumable_and_new_resets ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_authorized_telegram_text_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_authorized_telegram_text_0/codex-state.json')
+
+>   ???
+E   AssertionError: assert 0 == 2
+E    +  where 0 = <built-in method count of list object at 0x10a325ec0>('thread/start')
+E    +    where <built-in method count of list object at 0x10a325ec0> = [].count
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:577: AssertionError
+__________ test_codex_transport_switch_starts_a_backend_owned_session __________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_codex_transport_switch_st0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_codex_transport_switch_st0/codex-state.json')
+
+>   ???
+E   AssertionError: assert [] == [['app-server..., 'stdio://']]
+E     
+E     Right contains 2 more items, first extra item: ['app-server', 'proxy']
+E     Use -v to get more diff
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:650: AssertionError
+_______ test_lost_managed_turn_ack_is_not_retried_on_embedded_transport ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_lost_managed_turn_ack_is_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_lost_managed_turn_ack_is_0/codex-state.json')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a2cffb0>
+
+>   ???
+E   AssertionError: assert [] == [['app-server', 'proxy']]
+E     
+E     Right contains one more item: ['app-server', 'proxy']
+E     Use -v to get more diff
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:680: AssertionError
+________ test_audio_transcript_and_caption_become_the_only_codex_prompt ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_audio_transcript_and_capt0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10a2dab70>
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_audio_transcript_and_capt0/codex-state.json')
+transcription_http = 'http://127.0.0.1:62543/v1'
+
+>   ???
+E   IndexError: list index out of range
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:784: IndexError
+_______ test_original_image_reaches_codex_and_claude_without_conversion ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_original_image_reaches_co0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_original_image_reaches_co0/codex-state.json')
+fake_claude = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_original_image_reaches_co0/claude-state.json')
+
+>   ???
+E   StopIteration
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:812: StopIteration
+
+The above exception was the direct cause of the following exception:
+
+self = <Coroutine test_original_image_reaches_codex_and_claude_without_conversion>
+
+>   ???
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:469: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:716: in inner
+    ???
+../../../../.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_UnixSelectorEventLoop running=False closed=False debug=False>
+future = <Task finished name='Task-59' coro=<test_original_image_reaches_codex_and_claude_without_conversion() done, defined at...ductor/tests/features/test_telegram_to_agents_gateway.py:797> exception=RuntimeError('coroutine raised StopIteration')>
+
+    def run_until_complete(self, future):
+        """Run until the Future is done.
+    
+        If the argument is a coroutine, it is wrapped in a Task.
+    
+        WARNING: It would be disastrous to call run_until_complete()
+        with the same coroutine twice -- it would wrap it in two
+        different Tasks and that can't be good.
+    
+        Return the Future's result, or raise its exception.
+        """
+        self._check_closed()
+        self._check_running()
+    
+        new_task = not futures.isfuture(future)
+        future = tasks.ensure_future(future, loop=self)
+        if new_task:
+            # An exception is raised if the future didn't complete, so there
+            # is no need to log the "destroy pending task" message
+            future._log_destroy_pending = False
+    
+        future.add_done_callback(_run_until_complete_cb)
+        try:
+            self.run_forever()
+        except:
+            if new_task and future.done() and not future.cancelled():
+                # The coroutine raised a BaseException. Consume the exception
+                # to not log a warning, the caller doesn't have access to the
+                # local task.
+                future.exception()
+            raise
+        finally:
+            future.remove_done_callback(_run_until_complete_cb)
+        if not future.done():
+            raise RuntimeError('Event loop stopped before Future completed.')
+    
+>       return future.result()
+               ^^^^^^^^^^^^^^^
+E       RuntimeError: coroutine raised StopIteration
+
+../../../../.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/asyncio/base_events.py:691: RuntimeError
+______ test_original_document_reaches_codex_as_the_exact_attachment_line _______
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_original_document_reaches0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_original_document_reaches0/codex-state.json')
+
+>   ???
+E   StopIteration
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:852: StopIteration
+
+The above exception was the direct cause of the following exception:
+
+self = <Coroutine test_original_document_reaches_codex_as_the_exact_attachment_line>
+
+>   ???
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:469: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:716: in inner
+    ???
+../../../../.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/asyncio/runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <_UnixSelectorEventLoop running=False closed=False debug=False>
+future = <Task finished name='Task-66' coro=<test_original_document_reaches_codex_as_the_exact_attachment_line() done, defined ...ductor/tests/features/test_telegram_to_agents_gateway.py:839> exception=RuntimeError('coroutine raised StopIteration')>
+
+    def run_until_complete(self, future):
+        """Run until the Future is done.
+    
+        If the argument is a coroutine, it is wrapped in a Task.
+    
+        WARNING: It would be disastrous to call run_until_complete()
+        with the same coroutine twice -- it would wrap it in two
+        different Tasks and that can't be good.
+    
+        Return the Future's result, or raise its exception.
+        """
+        self._check_closed()
+        self._check_running()
+    
+        new_task = not futures.isfuture(future)
+        future = tasks.ensure_future(future, loop=self)
+        if new_task:
+            # An exception is raised if the future didn't complete, so there
+            # is no need to log the "destroy pending task" message
+            future._log_destroy_pending = False
+    
+        future.add_done_callback(_run_until_complete_cb)
+        try:
+            self.run_forever()
+        except:
+            if new_task and future.done() and not future.cancelled():
+                # The coroutine raised a BaseException. Consume the exception
+                # to not log a warning, the caller doesn't have access to the
+                # local task.
+                future.exception()
+            raise
+        finally:
+            future.remove_done_callback(_run_until_complete_cb)
+        if not future.done():
+            raise RuntimeError('Event loop stopped before Future completed.')
+    
+>       return future.result()
+               ^^^^^^^^^^^^^^^
+E       RuntimeError: coroutine raised StopIteration
+
+../../../../.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/asyncio/base_events.py:691: RuntimeError
+___________ test_native_codex_progress_is_semantic_grouped_and_safe ____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_native_codex_progress_is_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_native_codex_progress_is_0/codex-state.json')
+
+>   ???
+E   assert []
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:1375: AssertionError
+________ test_streaming_and_cancellation_stay_on_the_telegram_boundary _________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_streaming_and_cancellatio0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_streaming_and_cancellatio0/codex-state.json')
+
+>   ???
+E   Failed: active Codex bridge turn did not start
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:1506: Failed
+_____________ test_fixed_timeout_stops_once_and_the_topic_recovers _____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_fixed_timeout_stops_once_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_fixed_timeout_stops_once_0/codex-state.json')
+
+>   ???
+E   AssertionError: assert [] == ['Timeout thi...ter timeout.']
+E     
+E     Right contains 2 more items, first extra item: 'Timeout this turn.'
+E     Use -v to get more diff
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:1571: AssertionError
+______ test_forum_topic_uses_one_mapped_project_for_codex_where_and_files ______
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_forum_topic_uses_one_mapp0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_forum_topic_uses_one_mapp0/codex-state.json')
+
+>   ???
+E   IndexError: list index out of range
+
+/Users/marcocello/software/marcocello/codex-on-vm/ductor/tests/features/test_telegram_to_agents_gateway.py:1613: IndexError
+------------------------------ Captured log call -------------------------------
+WARNING  telegram_to_agents.security.paths:paths.py:39 Path blocked: /private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_forum_topic_uses_one_mapp0/outside.txt (outside allowed roots)
+WARNING  telegram_to_agents.messenger.telegram.sender:sender.py:237 File path blocked (outside allowed roots): /private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2149/test_forum_topic_uses_one_mapp0/outside.txt
+=========================== short test summary info ============================
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_authorized_telegram_text_is_exact_resumable_and_new_resets
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_codex_transport_switch_starts_a_backend_owned_session
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_lost_managed_turn_ack_is_not_retried_on_embedded_transport
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_audio_transcript_and_caption_become_the_only_codex_prompt
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_original_image_reaches_codex_and_claude_without_conversion
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_original_document_reaches_codex_as_the_exact_attachment_line
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_native_codex_progress_is_semantic_grouped_and_safe
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_streaming_and_cancellation_stay_on_the_telegram_boundary
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_fixed_timeout_stops_once_and_the_topic_recovers
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_forum_topic_uses_one_mapped_project_for_codex_where_and_files
+10 failed, 29 passed in 7.59s

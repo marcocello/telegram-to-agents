@@ -1,0 +1,32 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/ductor
+proof_tests=tests/features/test_codex_telegram_gateway.py
+providers=codex,claude
+wheel=ductor-0.20.1-py3-none-any.whl
+ductor [onboarding|reset|status|stop|restart]
+With no command, run the Codex Telegram gateway.
+installed_wheel_import=PASS
+installed_wheel_runtime_start=PASS
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_configuration_commands_and_file_policy_are_gateway_only _________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1958/test_configuration_commands_an0')
+
+    def test_configuration_commands_and_file_policy_are_gateway_only(tmp_path: Path) -> None:
+        fields = AgentConfig.model_fields
+        assert AgentConfig().provider == "codex"
+>       assert AgentConfig(provider="claude").provider == "claude"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for AgentConfig
+E       provider
+E         Input should be 'codex' [type=literal_error, input_value='claude', input_type=str]
+E           For further information visit https://errors.pydantic.dev/2.12/v/literal_error
+
+tests/features/test_codex_telegram_gateway.py:622: ValidationError
+=========================== short test summary info ============================
+FAILED tests/features/test_codex_telegram_gateway.py::test_configuration_commands_and_file_policy_are_gateway_only
+1 failed in 0.77s

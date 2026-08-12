@@ -1,0 +1,7 @@
+Building wheel...
+Successfully built /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.N1VUtnPahA/ductor-0.20.1-py3-none-any.whl
+Using CPython 3.12.11 interpreter at: .venv/bin/python
+Resolved 1 package in 3ms
+Prepared 1 package in 8ms
+Installed 1 package in 2ms
+ + ductor==0.20.1 (from file:///var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.N1VUtnPahA/ductor-0.20.1-py3-none-any.whl)

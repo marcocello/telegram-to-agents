@@ -1,0 +1,20 @@
+{
+  "capture_pid": 73858,
+  "command": [
+    "docs/features/telegram-to-agents-gateway/proof/run.sh"
+  ],
+  "cwd": "/Users/marcocello/software/marcocello/codex-on-vm/telegram-to-agents",
+  "runner_pgid": 73870,
+  "runner_pid": 73870,
+  "runtime": {
+    "capture_python": "3.14.4",
+    "capture_python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "platform_release": "25.5.0",
+    "shell": "/opt/homebrew/bin/zsh"
+  },
+  "started_at": "2026-08-11T23:40:12.279162+00:00",
+  "status": "STARTED",
+  "timeout_seconds": 240.0
+}

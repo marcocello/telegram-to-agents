@@ -1,0 +1,20 @@
+Building wheel...
+Successfully built /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/ductor-0.20.1-py3-none-any.whl
+Using CPython 3.12.11 interpreter at: .venv/bin/python
+Resolved 1 package in 3ms
+Prepared 1 package in 10ms
+Installed 1 package in 2ms
+ + ductor==0.20.1 (from file:///var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/ductor-0.20.1-py3-none-any.whl)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/wheel-site/ductor_bot/messenger/telegram/app.py", line 25, in <module>
+    from ductor_bot.messenger.telegram.message_dispatch import (
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/wheel-site/ductor_bot/messenger/telegram/message_dispatch.py", line 11, in <module>
+    from ductor_bot.messenger.telegram.sender import (
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/wheel-site/ductor_bot/messenger/telegram/sender.py", line 25, in <module>
+    from ductor_bot.security.paths import is_path_safe
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/wheel-site/ductor_bot/security/__init__.py", line 3, in <module>
+    from ductor_bot.security.paths import is_path_safe, validate_file_path
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.DiILYaWk9V/wheel-site/ductor_bot/security/paths.py", line 9, in <module>
+    from ductor_bot.errors import PathValidationError
+ModuleNotFoundError: No module named 'ductor_bot.errors'

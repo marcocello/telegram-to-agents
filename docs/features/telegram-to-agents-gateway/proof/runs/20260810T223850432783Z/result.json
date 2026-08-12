@@ -1,0 +1,29 @@
+{
+  "capture_pid": 64032,
+  "cleanup": {
+    "kill_sent": false,
+    "status": "clear",
+    "term_sent": false
+  },
+  "command": [
+    "docs/features/codex-telegram-gateway/proof/run.sh"
+  ],
+  "cwd": "/Users/marcocello/software/marcocello/codex-on-vm/ductor",
+  "duration_seconds": 7.070481,
+  "ended_at": "2026-08-10T22:38:57.503531+00:00",
+  "returncode": 0,
+  "runner_pgid": 64074,
+  "runner_pid": 64074,
+  "runner_returncode": 0,
+  "runtime": {
+    "capture_python": "3.14.4",
+    "capture_python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "platform_release": "25.5.0",
+    "shell": "/opt/homebrew/bin/zsh"
+  },
+  "started_at": "2026-08-10T22:38:50.433015+00:00",
+  "status": "PASS",
+  "timeout_seconds": 180.0
+}

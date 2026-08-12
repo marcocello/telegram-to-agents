@@ -1,0 +1,11 @@
+Building wheel...
+Successfully built /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.ivWCWBGem9/ductor-0.20.1-py3-none-any.whl
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.ivWCWBGem9/wheel-venv/bin/python -m pip install --upgrade pip
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.ivWCWBGem9/wheel-venv/lib/python3.12/site-packages/ductor_bot/__main__.py", line 13, in <module>
+    from rich.console import Console
+ModuleNotFoundError: No module named 'rich'

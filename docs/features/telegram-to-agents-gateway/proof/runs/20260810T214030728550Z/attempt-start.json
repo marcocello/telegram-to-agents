@@ -1,0 +1,20 @@
+{
+  "capture_pid": 5842,
+  "command": [
+    "docs/features/codex-telegram-gateway/proof/run.sh"
+  ],
+  "cwd": "/Users/marcocello/software/marcocello/codex-on-vm/ductor",
+  "runner_pgid": 5854,
+  "runner_pid": 5854,
+  "runtime": {
+    "capture_python": "3.14.4",
+    "capture_python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "machine": "arm64",
+    "platform": "Darwin",
+    "platform_release": "25.5.0",
+    "shell": "/opt/homebrew/bin/zsh"
+  },
+  "started_at": "2026-08-10T21:40:30.728734+00:00",
+  "status": "STARTED",
+  "timeout_seconds": 180.0
+}

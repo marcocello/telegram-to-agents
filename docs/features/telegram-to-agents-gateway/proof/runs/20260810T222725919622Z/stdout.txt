@@ -1,0 +1,10 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/ductor
+proof_tests=tests/features/test_codex_telegram_gateway.py
+wheel=ductor-0.20.1-py3-none-any.whl
+Processing /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.ivWCWBGem9/ductor-0.20.1-py3-none-any.whl
+Installing collected packages: ductor
+Successfully installed ductor-0.20.1

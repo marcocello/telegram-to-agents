@@ -1,0 +1,27 @@
+## Based on https://jasonstitt.com/gitignore-whitelisting-patterns
+
+# 1. Ignore everything
+*
+
+# 2. But descend into directories
+!*/
+
+# 3. Allow specific files and file extensions
+!.gitignore
+!LICENSE
+!*.py
+!*.sh
+!*.md
+!*.json
+!uv.lock
+!pyproject.toml
+
+
+# 4. Block specific directories and files
+.git/
+**/.pytest_cache
+**/.venv
+docs/features/**/proof/runs
+
+# Local security register
+README.private.md

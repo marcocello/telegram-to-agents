@@ -1,0 +1,479 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/ductor
+proof_tests=tests/features/test_codex_telegram_gateway.py
+wheel=ductor-0.20.1-py3-none-any.whl
+ductor [onboarding|reset|status|stop|restart]
+With no command, run the Codex Telegram gateway.
+installed_wheel_import=PASS
+installed_wheel_runtime_start=PASS
+.                                                                        [100%]
+1 passed in 0.79s
+FFFF.......FFFFFF                                                        [100%]
+=================================== FAILURES ===================================
+_______ test_authorized_telegram_text_is_exact_resumable_and_new_resets ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_authorized_telegram_text_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_authorized_telegram_text_0/codex-state.json')
+
+    async def test_authorized_telegram_text_is_exact_resumable_and_new_resets(
+        tmp_path: Path,
+        fake_codex: Path,
+    ) -> None:
+>       app, _orchestrator, telegram = _gateway(tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^
+
+tests/features/test_codex_telegram_gateway.py:434: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_authorized_telegram_text_0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+____________ test_unauthorized_telegram_update_never_reaches_codex _____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_unauthorized_telegram_upd0')
+
+    async def test_unauthorized_telegram_update_never_reaches_codex(tmp_path: Path) -> None:
+>       app, orchestrator, telegram = _gateway(tmp_path)
+                                      ^^^^^^^^^^^^^^^^^^
+
+tests/features/test_codex_telegram_gateway.py:473: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_unauthorized_telegram_upd0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+___________ test_channel_allowlist_is_enforced_without_a_user_actor ____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_channel_allowlist_is_enfo0')
+
+    async def test_channel_allowlist_is_enforced_without_a_user_actor(tmp_path: Path) -> None:
+>       app, orchestrator, telegram = _gateway(tmp_path, allowed_channel_ids=[-300])
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/features/test_codex_telegram_gateway.py:483: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_channel_allowlist_is_enfo0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+________ test_audio_transcript_and_caption_become_the_only_codex_prompt ________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_audio_transcript_and_capt0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10c4c6660>
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_audio_transcript_and_capt0/codex-state.json')
+transcription_http = 'http://127.0.0.1:55119/v1'
+
+    async def test_audio_transcript_and_caption_become_the_only_codex_prompt(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+        fake_codex: Path,
+        transcription_http: str,
+    ) -> None:
+>       app, _orchestrator, telegram = _gateway(
+            tmp_path,
+            transcription=TranscriptionConfig(automatic_audio=True, model="gpt-4o-transcribe"),
+        )
+
+tests/features/test_codex_telegram_gateway.py:513: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_audio_transcript_and_capt0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+________ test_streaming_and_cancellation_stay_on_the_telegram_boundary _________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_streaming_and_cancellatio0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_streaming_and_cancellatio0/codex-state.json')
+
+    async def test_streaming_and_cancellation_stay_on_the_telegram_boundary(
+        tmp_path: Path,
+        fake_codex: Path,
+    ) -> None:
+>       app, orchestrator, telegram = _gateway(tmp_path)
+                                      ^^^^^^^^^^^^^^^^^^
+
+tests/features/test_codex_telegram_gateway.py:793: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_streaming_and_cancellatio0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+_____________ test_fixed_timeout_stops_once_and_the_topic_recovers _____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_fixed_timeout_stops_once_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_fixed_timeout_stops_once_0/codex-state.json')
+
+    async def test_fixed_timeout_stops_once_and_the_topic_recovers(
+        tmp_path: Path,
+        fake_codex: Path,
+    ) -> None:
+>       app, _orchestrator, telegram = _gateway(tmp_path, timeout_seconds=0.05)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/features/test_codex_telegram_gateway.py:837: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_fixed_timeout_stops_once_0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+______ test_forum_topic_uses_one_mapped_project_for_codex_where_and_files ______
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_forum_topic_uses_one_mapp0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_forum_topic_uses_one_mapp0/codex-state.json')
+
+    async def test_forum_topic_uses_one_mapped_project_for_codex_where_and_files(
+        tmp_path: Path,
+        fake_codex: Path,
+    ) -> None:
+        mapped = tmp_path / "mapped-project"
+        mapped.mkdir()
+        allowed = mapped / "topic-report.txt"
+        allowed.write_text("ok", encoding="utf-8")
+        blocked = tmp_path / "outside.txt"
+        blocked.write_text("secret", encoding="utf-8")
+>       app, _orchestrator, telegram = _gateway(
+            tmp_path,
+            project_roots={"Builds": str(mapped)},
+            file_access="workspace",
+        )
+
+tests/features/test_codex_telegram_gateway.py:864: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_forum_topic_uses_one_mapp0')
+
+    def _gateway(
+        tmp_path: Path,
+        *,
+        transcription: TranscriptionConfig | None = None,
+        allowed_channel_ids: list[int] | None = None,
+        project_roots: dict[str, str] | None = None,
+        file_access: str = "all",
+        timeout_seconds: float = 1800.0,
+    ) -> tuple[TelegramBot, Orchestrator, MagicMock]:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            allowed_channel_ids=allowed_channel_ids or [],
+            project_root=str(project),
+            project_roots=project_roots or {},
+            file_access=file_access,
+            streaming=StreamingConfig(enabled=False),
+            timeouts=TimeoutConfig(normal=timeout_seconds),
+            transcription=transcription or TranscriptionConfig(),
+        )
+        paths = _paths(tmp_path)
+        paths.telegram_files_dir.mkdir(parents=True)
+        orchestrator = Orchestrator(config, paths)
+        telegram = _fake_telegram_bot()
+        with patch("ductor_bot.messenger.telegram.app.Bot", return_value=telegram):
+            app = TelegramBot(config)
+>       app._bind_orchestrator(orchestrator)
+        ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'TelegramBot' object has no attribute '_bind_orchestrator'. Did you mean: '_orchestrator'?
+
+tests/features/test_codex_telegram_gateway.py:426: AttributeError
+______ test_runtime_starts_one_telegram_gateway_without_agent_supervision ______
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-1944/test_runtime_starts_one_telegr0')
+
+    async def test_runtime_starts_one_telegram_gateway_without_agent_supervision(
+        tmp_path: Path,
+    ) -> None:
+        project = tmp_path / "project"
+        project.mkdir()
+        config = AgentConfig(
+            telegram_token="12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+            allowed_user_ids=[100],
+            project_root=str(project),
+            log_level="DEBUG",
+        )
+        runtime = MagicMock()
+        runtime.run = AsyncMock(return_value=0)
+        runtime.shutdown = AsyncMock()
+        with (
+            patch("ductor_bot.messenger.telegram.app.TelegramBot", return_value=runtime) as create,
+            patch("ductor_bot.infra.pidlock.acquire_lock"),
+            patch("ductor_bot.infra.pidlock.release_lock"),
+            patch("ductor_bot.__main__.logging.basicConfig") as configure_logging,
+        ):
+            assert await run_bot(config) == 0
+    
+        create.assert_called_once_with(config)
+        runtime.run.assert_awaited_once_with()
+        runtime.shutdown.assert_awaited_once_with()
+>       configure_logging.assert_called_once()
+
+tests/features/test_codex_telegram_gateway.py:918: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <MagicMock name='basicConfig' id='4506059552'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'basicConfig' to have been called once. Called 0 times.
+
+../../../../.local/share/uv/python/cpython-3.12.11-macos-aarch64-none/lib/python3.12/unittest/mock.py:928: AssertionError
+________________ test_built_wheel_contains_only_gateway_runtime ________________
+
+    def test_built_wheel_contains_only_gateway_runtime() -> None:
+        if "GATEWAY_WHEEL" not in os.environ:
+            pytest.skip("the feature proof builds and supplies GATEWAY_WHEEL")
+        wheel_path = Path(os.environ["GATEWAY_WHEEL"])
+        assert wheel_path.is_file()
+        with zipfile.ZipFile(wheel_path) as wheel:
+            names = set(wheel.namelist())
+            metadata_name = next(name for name in names if name.endswith(".dist-info/METADATA"))
+            metadata = wheel.read(metadata_name).decode("utf-8")
+    
+        assert "ductor_bot/transcription/openai_audio.py" in names
+        assert "ductor_bot/cli/codex_provider.py" in names
+        assert "ductor_bot/cli/codex_appserver_bridge.py" in names
+        package_python = {
+            name for name in names if name.startswith("ductor_bot/") and name.endswith(".py")
+        }
+>       assert package_python <= ALLOWED_SOURCE_FILES
+E       AssertionError: assert {'ductor_bot/...base.py', ...} <= {'ductor_bot/...base.py', ...}
+E         
+E         Extra items in the left set:
+E         'ductor_bot/cli/timeout_controller.py'
+
+tests/features/test_codex_telegram_gateway.py:938: AssertionError
+________________ test_source_checkout_contains_only_the_gateway ________________
+
+    def test_source_checkout_contains_only_the_gateway() -> None:
+        repo_root = Path(__file__).parents[2]
+    
+        def _files_under(relative_root: str) -> set[str]:
+            root = repo_root / relative_root
+            return {
+                path.relative_to(repo_root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+                and "__pycache__" not in path.parts
+                and path.suffix not in {".pyc", ".pyo"}
+            }
+    
+>       assert _files_under("ductor_bot") <= ALLOWED_SOURCE_FILES
+E       AssertionError: assert {'ductor_bot/...base.py', ...} <= {'ductor_bot/...base.py', ...}
+E         
+E         Extra items in the left set:
+E         'ductor_bot/cli/timeout_controller.py'
+
+tests/features/test_codex_telegram_gateway.py:960: AssertionError
+=========================== short test summary info ============================
+FAILED tests/features/test_codex_telegram_gateway.py::test_authorized_telegram_text_is_exact_resumable_and_new_resets
+FAILED tests/features/test_codex_telegram_gateway.py::test_unauthorized_telegram_update_never_reaches_codex
+FAILED tests/features/test_codex_telegram_gateway.py::test_channel_allowlist_is_enforced_without_a_user_actor
+FAILED tests/features/test_codex_telegram_gateway.py::test_audio_transcript_and_caption_become_the_only_codex_prompt
+FAILED tests/features/test_codex_telegram_gateway.py::test_streaming_and_cancellation_stay_on_the_telegram_boundary
+FAILED tests/features/test_codex_telegram_gateway.py::test_fixed_timeout_stops_once_and_the_topic_recovers
+FAILED tests/features/test_codex_telegram_gateway.py::test_forum_topic_uses_one_mapped_project_for_codex_where_and_files
+FAILED tests/features/test_codex_telegram_gateway.py::test_runtime_starts_one_telegram_gateway_without_agent_supervision
+FAILED tests/features/test_codex_telegram_gateway.py::test_built_wheel_contains_only_gateway_runtime
+FAILED tests/features/test_codex_telegram_gateway.py::test_source_checkout_contains_only_the_gateway
+10 failed, 7 passed in 4.00s

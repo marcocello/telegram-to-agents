@@ -1,0 +1,52 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/ductor
+proof_tests=tests/features/test_codex_telegram_gateway.py
+providers=codex,claude
+wheel=ductor-0.20.1-py3-none-any.whl
+ductor [onboarding|reset|status|stop|restart]
+With no command, run the native-harness Telegram gateway.
+installed_wheel_import=PASS
+installed_wheel_runtime_start=PASS
+.                                                                        [100%]
+1 passed in 0.87s
+....................F...........                                         [100%]
+=================================== FAILURES ===================================
+___________ test_native_codex_progress_is_semantic_grouped_and_safe ____________
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2024/test_native_codex_progress_is_0')
+fake_codex = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2024/test_native_codex_progress_is_0/codex-state.json')
+
+    async def test_native_codex_progress_is_semantic_grouped_and_safe(
+        tmp_path: Path,
+        fake_codex: Path,
+    ) -> None:
+        app, _orchestrator, telegram = _gateway(tmp_path)
+    
+        await app.dispatcher.feed_update(telegram, _update(1, "Show aligned progress."))
+    
+        initial_payloads = [
+            str(method.text)
+            for call in telegram.await_args_list
+            if call.args
+            for method in call.args[:1]
+            if isinstance(getattr(method, "text", None), str)
+        ]
+        edited_payloads = [
+            str(call.kwargs["text"])
+            for call in telegram.edit_message_text.await_args_list
+            if isinstance(call.kwargs.get("text"), str)
+        ]
+        temporary_payloads = [*initial_payloads, *edited_payloads]
+    
+        assert temporary_payloads
+>       assert any("a deliberately long" in payload for payload in temporary_payloads)
+E       assert False
+E        +  where False = any(<generator object test_native_codex_progress_is_semantic_grouped_and_safe.<locals>.<genexpr> at 0x1168845f0>)
+
+tests/features/test_codex_telegram_gateway.py:1192: AssertionError
+=========================== short test summary info ============================
+FAILED tests/features/test_codex_telegram_gateway.py::test_native_codex_progress_is_semantic_grouped_and_safe
+1 failed, 31 passed in 9.36s

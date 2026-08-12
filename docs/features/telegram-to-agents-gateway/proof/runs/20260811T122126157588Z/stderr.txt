@@ -1,0 +1,9 @@
+Building wheel...
+Successfully built /var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.1vLNsXVKR6/ductor-0.20.1-py3-none-any.whl
+Using CPython 3.12.11 interpreter at: .venv/bin/python
+Resolved 1 package in 1ms
+Prepared 1 package in 6ms
+Installed 1 package in 2ms
+ + ductor==0.20.1 (from file:///var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/tmp.1vLNsXVKR6/ductor-0.20.1-py3-none-any.whl)
+docs/features/codex-telegram-gateway/proof/run.sh: line 41: 57934 Terminated: 15          GATEWAY_WHEEL="$wheel_path" "$python_bin" -m pytest -q tests/features/test_codex_telegram_gateway.py
+proof_run_capture: timed out after 180 seconds

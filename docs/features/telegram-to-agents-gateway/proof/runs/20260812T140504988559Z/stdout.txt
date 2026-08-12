@@ -1,0 +1,45 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/telegram-to-agents/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/telegram-to-agents
+proof_tests=tests/features/test_telegram_to_agents_gateway.py
+providers=codex,claude
+wheel=telegram_to_agents-0.1.0-py3-none-any.whl
+sdist=telegram_to_agents-0.1.0.tar.gz
+telegram-to-agents [onboarding|reset|status|stop|restart]
+With no command, run the native-harness Telegram gateway.
+installed_wheel_import=PASS
+installed_wheel_runtime_start=PASS
+.                                                                        [100%]
+1 passed in 0.86s
+..............F......................                                    [100%]
+=================================== FAILURES ===================================
+_______ test_unknown_config_field_is_rejected_without_rewriting_the_file _______
+
+tmp_path = PosixPath('/private/var/folders/nf/8g90cw3d5pv1smp4vpxnvh4w0000gn/T/pytest-of-marcocello/pytest-2289/test_unknown_config_field_is_r0')
+
+    def test_unknown_config_field_is_rejected_without_rewriting_the_file(tmp_path: Path) -> None:
+        paths = _paths(tmp_path)
+        paths.config_path.parent.mkdir(parents=True, exist_ok=True)
+        original = json.dumps(
+            {
+                "provider": "claude",
+                "telegram_token": "12345678:abcdefghijklmnopqrstuvwxyzABCDEF123456",
+                "allowed_user_ids": [100],
+                "project_root": str(tmp_path),
+                "unexpected_extension": {"enabled": True},
+            },
+            indent=2,
+        ).encode()
+        paths.config_path.write_bytes(original)
+    
+        with patch("telegram_to_agents.__main__.resolve_paths", return_value=paths):
+>           with pytest.raises(ValidationError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE <class 'pydantic_core._pydantic_core.ValidationError'>
+
+tests/features/test_telegram_to_agents_gateway.py:976: Failed
+=========================== short test summary info ============================
+FAILED tests/features/test_telegram_to_agents_gateway.py::test_unknown_config_field_is_rejected_without_rewriting_the_file
+1 failed, 36 passed in 9.61s

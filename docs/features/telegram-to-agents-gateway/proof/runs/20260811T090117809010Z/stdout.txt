@@ -1,0 +1,77 @@
+python=/Users/marcocello/software/marcocello/codex-on-vm/ductor/.venv/bin/python
+Python 3.12.11
+pytest 9.0.2
+uv 0.9.5 (Homebrew 2025-10-21)
+repo_root=/Users/marcocello/software/marcocello/codex-on-vm/ductor
+proof_tests=tests/features/test_codex_telegram_gateway.py
+wheel=ductor-0.20.1-py3-none-any.whl
+ductor [onboarding|reset|status|stop|restart]
+With no command, run the Codex Telegram gateway.
+installed_wheel_import=PASS
+.                                                                        [100%]
+1 passed in 0.83s
+.............FF                                                          [100%]
+=================================== FAILURES ===================================
+________________ test_built_wheel_contains_only_gateway_runtime ________________
+
+    def test_built_wheel_contains_only_gateway_runtime() -> None:
+        if "GATEWAY_WHEEL" not in os.environ:
+            pytest.skip("the feature proof builds and supplies GATEWAY_WHEEL")
+        wheel_path = Path(os.environ["GATEWAY_WHEEL"])
+        assert wheel_path.is_file()
+        with zipfile.ZipFile(wheel_path) as wheel:
+            names = set(wheel.namelist())
+            metadata_name = next(name for name in names if name.endswith(".dist-info/METADATA"))
+            metadata = wheel.read(metadata_name).decode("utf-8")
+    
+        assert "ductor_bot/transcription/openai_audio.py" in names
+        assert "ductor_bot/cli/codex_provider.py" in names
+        assert "ductor_bot/cli/codex_appserver_bridge.py" in names
+        package_python = {
+            name for name in names if name.startswith("ductor_bot/") and name.endswith(".py")
+        }
+>       assert package_python <= ALLOWED_SOURCE_FILES
+E       AssertionError: assert {'ductor_bot/...base.py', ...} <= {'ductor_bot/...base.py', ...}
+E         
+E         Extra items in the left set:
+E         'ductor_bot/messenger/telegram/buttons.py'
+E         'ductor_bot/orchestrator/registry.py'
+E         'ductor_bot/i18n/__init__.py'
+E         'ductor_bot/cli/factory.py'
+E         'ductor_bot/cli_commands/__init__.py'...
+E         
+E         ...Full output truncated (5 lines hidden), use '-vv' to show
+
+tests/features/test_codex_telegram_gateway.py:837: AssertionError
+________________ test_source_checkout_contains_only_the_gateway ________________
+
+    def test_source_checkout_contains_only_the_gateway() -> None:
+        repo_root = Path(__file__).parents[2]
+    
+        def _files_under(relative_root: str) -> set[str]:
+            root = repo_root / relative_root
+            return {
+                path.relative_to(repo_root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+                and "__pycache__" not in path.parts
+                and path.suffix not in {".pyc", ".pyo"}
+            }
+    
+>       assert _files_under("ductor_bot") <= ALLOWED_SOURCE_FILES
+E       AssertionError: assert {'ductor_bot/...only.md', ...} <= {'ductor_bot/...base.py', ...}
+E         
+E         Extra items in the left set:
+E         'ductor_bot/messenger/telegram/file_browser.py'
+E         'ductor_bot/i18n/__init__.py'
+E         'ductor_bot/_home_defaults/workspace/tools/cron_tools/RULES-codex-only.md'
+E         'ductor_bot/_home_defaults/workspace/tools/media_tools/process_video.py'
+E         'ductor_bot/cron/execution.py'...
+E         
+E         ...Full output truncated (258 lines hidden), use '-vv' to show
+
+tests/features/test_codex_telegram_gateway.py:857: AssertionError
+=========================== short test summary info ============================
+FAILED tests/features/test_codex_telegram_gateway.py::test_built_wheel_contains_only_gateway_runtime
+FAILED tests/features/test_codex_telegram_gateway.py::test_source_checkout_contains_only_the_gateway
+2 failed, 13 passed in 4.03s
