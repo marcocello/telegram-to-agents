@@ -25,3 +25,6 @@ docs/features/**/proof/runs
 
 # Local security register
 README.private.md
+
+# Keep private conversations and local metadata out of public commits.
+docs/interactions/
