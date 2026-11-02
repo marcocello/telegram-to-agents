@@ -12,6 +12,7 @@
 !*.py
 !*.sh
 !*.md
+!docs/*.html
 !*.json
 !uv.lock
 !pyproject.toml
